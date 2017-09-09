@@ -8,12 +8,48 @@
     tools:context="com.convertor.convertor.MainActivity">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:id="@+id/inr"
+        android:layout_width="315dp"
+        android:layout_height="45dp"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="35dp"
+        tools:layout_editor_absoluteY="386dp" />
 
+    <EditText
+        android:layout_width="183dp"
+        android:layout_height="52dp"
+        android:id="@+id/edit"
+        tools:layout_editor_absoluteY="66dp"
+        tools:layout_editor_absoluteX="30dp" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="95dp"
+        android:layout_height="51dp"
+        tools:layout_editor_absoluteX="258dp"
+        tools:layout_editor_absoluteY="66dp" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="319dp"
+        android:layout_height="57dp"
+        android:text="Convert"
+        tools:layout_editor_absoluteX="34dp"
+        tools:layout_editor_absoluteY="153dp" />
+
+    <TextView
+        android:id="@+id/usd"
+        android:layout_width="317dp"
+        android:layout_height="45dp"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="34dp"
+        tools:layout_editor_absoluteY="246dp" />
+
+    <TextView
+        android:id="@+id/eur"
+        android:layout_width="315dp"
+        android:layout_height="45dp"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="36dp"
+        tools:layout_editor_absoluteY="316dp" />
 </android.support.constraint.ConstraintLayout>
