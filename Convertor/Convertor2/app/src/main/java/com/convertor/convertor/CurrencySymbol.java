@@ -29,6 +29,7 @@ public class CurrencySymbol {
             try {
                 currencies.put(locale.getDisplayCountry(),
                         Currency.getInstance(locale).getCurrencyCode());
+
             } catch (Exception e) {
                 // when the locale is not supported
             }

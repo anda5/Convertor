@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#AED581"
     tools:context="com.convertor.convertor.MainActivity">
 
 
@@ -14,10 +15,12 @@
         android:layout_height="51dp"
         tools:layout_editor_absoluteX="255dp"
         tools:layout_editor_absoluteY="75dp"
-        android:layout_alignTop="@+id/usd"
-        android:layout_alignLeft="@+id/spinner"
-        android:layout_alignStart="@+id/spinner"
-        android:layout_alignBottom="@+id/usd" />
+        android:layout_below="@+id/button"
+        android:layout_marginTop="19dp"
+        android:layout_alignLeft="@+id/button"
+        android:layout_alignStart="@+id/button"
+        android:layout_alignRight="@+id/button"
+        android:layout_alignEnd="@+id/button" />
 
     <EditText
         android:id="@+id/edit"
@@ -25,10 +28,16 @@
         android:layout_height="52dp"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="45dp"
+        android:textSize="30dp"
+        android:background="@drawable/shape_edit"
         tools:text="edit"
-        android:layout_alignTop="@+id/spinner"
-        android:layout_alignLeft="@+id/button"
-        android:layout_alignStart="@+id/button" />
+        android:inputType="number|phone"
+        android:layout_marginTop="22dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/spinner"
+        android:layout_alignEnd="@+id/spinner"
+        android:layout_alignLeft="@+id/spinner"
+        android:layout_alignStart="@+id/spinner" />
 
     <Spinner
         android:id="@+id/spinner"
@@ -36,36 +45,47 @@
         android:layout_height="51dp"
         tools:layout_editor_absoluteX="255dp"
         tools:layout_editor_absoluteY="75dp"
-        android:layout_marginTop="65dp"
-        android:layout_below="@+id/inr"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_toRightOf="@+id/edit"
-        android:layout_toEndOf="@+id/edit" />
+        android:layout_marginTop="12dp"
+        android:layout_below="@+id/edit"
+        android:layout_alignLeft="@+id/button"
+        android:layout_alignStart="@+id/button"
+        android:layout_alignRight="@+id/button"
+        android:layout_alignEnd="@+id/button" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="319dp"
         android:layout_height="57dp"
         android:text="Convert"
-
-        android:layout_below="@+id/edit"
+        android:textSize="25dp"
+        android:background="@drawable/shape_button"
+        android:layout_below="@+id/spinner"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="47dp" />
+        android:layout_marginTop="14dp" />
 
     <TextView
         android:id="@+id/usd"
         android:layout_width="317dp"
         android:layout_height="45dp"
-        android:text="t1"
         tools:layout_editor_absoluteX="34dp"
         tools:layout_editor_absoluteY="275dp"
-        tools:text="text"
+        tools:text="Result"
+        android:textColor="#FAFAFA"
+        android:textSize="30dp"
+        android:background="@drawable/shape_result"
         android:layout_marginTop="27dp"
-        android:layout_below="@+id/button"
-        android:layout_alignLeft="@+id/button"
-        android:layout_alignStart="@+id/button"
-        android:layout_alignRight="@+id/edit"
-        android:layout_alignEnd="@+id/edit" />
+        android:layout_below="@+id/spinner2"
+        android:layout_alignRight="@+id/button"
+        android:layout_alignEnd="@+id/button" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/currency"
+        android:layout_below="@+id/usd"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="19dp" />
 
 </RelativeLayout>

@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import org.apache.http.HttpEntity;
@@ -42,10 +43,11 @@ public class MainActivity extends AppCompatActivity {
     private EditText mEdit;
     private Button mButton;
     private Spinner mSpinner;
-    public  int mIndex;
+    private Spinner mSpinner1;
+    public  int mIndex, mIndex2;
     public  double mValue;
     private String theResult[] = new String[2] ;
-    private String convertFrom;
+    private String convertFrom, convertTo;
     private List<String> array = new ArrayList<String>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +58,8 @@ public class MainActivity extends AppCompatActivity {
         mEdit = (EditText) findViewById(R.id.edit);
         mSpinner = (Spinner) findViewById(R.id.spinner);
         mUsd = (TextView) findViewById(R.id.usd);
-        mInr = (TextView) findViewById(R.id.inr);
 
+        mSpinner1 = (Spinner) findViewById(R.id.spinner2);
         CurrencySymbol cs = new CurrencySymbol();
 
         Map currencies = cs.getAvailableCurrencies();
@@ -71,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.currency, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
         mSpinner.setAdapter(dataAdapter);
+        mSpinner1.setAdapter(dataAdapter);
 
         mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -84,14 +87,30 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        mSpinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                mIndex2 = position;
+                convertTo = parent.getItemAtPosition(mIndex2).toString();
+                mUsd.setText("");
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 String value = mEdit.getText().toString();
-                mValue = Double.parseDouble(value);
 
+                if(value.isEmpty() || value==null){
+                    Toast.makeText(getApplicationContext(),"Please insert some value!",Toast.LENGTH_SHORT).show();
+                }else{
+                    mValue = Double.parseDouble(value);
+                }
 
                 new JsonParser().execute();
             }
@@ -113,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
         protected Void doInBackground(String... params) {
 
             URL url= new URL();
-            String url_select = url.formatURL(convertFrom);
+            String url_select = url.formatURL(convertFrom,convertTo);
 
             ArrayList<NameValuePair> param = new ArrayList<NameValuePair>();
 
