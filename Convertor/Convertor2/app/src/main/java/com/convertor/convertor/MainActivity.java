@@ -65,8 +65,8 @@ public class MainActivity extends AppCompatActivity {
         Map currencies = cs.getAvailableCurrencies();
         for (Object country : currencies.keySet()) {
             String currencyCode = (String) currencies.get(country);
-            array.add(currencyCode);
-            System.out.println(country + " => " + currencyCode);
+            array.add(currencyCode+"-"+country);
+
         }
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, array);
@@ -79,7 +79,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 mIndex = position;
-               convertFrom = parent.getItemAtPosition(mIndex).toString();
+                String split[] =  parent.getItemAtPosition(mIndex).toString().split("-");
+                convertFrom = split[0];
+                Log.e("convert",convertFrom);
             }
 
             @Override
@@ -91,7 +93,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 mIndex2 = position;
-                convertTo = parent.getItemAtPosition(mIndex2).toString();
+                String split[] =  parent.getItemAtPosition(mIndex2).toString().split("-");
+                convertTo = split[0];
                 mUsd.setText("");
             }
 
