@@ -3,9 +3,12 @@
     package="com.convertor.convertor" >
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
+
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/lunch"
+        android:icon="@mipmap/currency1"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/lunch"
         android:supportsRtl="true"

@@ -1,10 +1,12 @@
 package com.convertor.convertor;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -31,7 +33,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -68,9 +72,10 @@ public class MainActivity extends AppCompatActivity {
             array.add(currencyCode+"-"+country);
 
         }
+        Collections.sort(array);
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, array);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.currency, android.R.layout.simple_spinner_item);
+                R.layout.spinner_item, array);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.currency, R.layout.spinner_item);
         adapter.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
         mSpinner.setAdapter(dataAdapter);
         mSpinner1.setAdapter(dataAdapter);
@@ -116,6 +121,13 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 new JsonParser().execute();
+
+                try {
+                    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+                } catch (Exception e) {
+                    // TODO: handle exception
+                }
             }
         });
 

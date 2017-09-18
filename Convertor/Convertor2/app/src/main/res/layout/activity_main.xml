@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#AED581"
+    android:background="#00BFA5"
     tools:context="com.convertor.convertor.MainActivity">
 
 
@@ -83,10 +83,9 @@
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@mipmap/currency"
+        app:srcCompat="@mipmap/currency2"
+        android:layout_marginTop="76dp"
         android:layout_below="@+id/usd"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="19dp" />
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
