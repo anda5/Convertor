@@ -83,9 +83,9 @@
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@mipmap/currency2"
-        android:layout_marginTop="76dp"
         android:layout_below="@+id/usd"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="76dp"
+        app:srcCompat="@mipmap/curr3" />
 
 </RelativeLayout>

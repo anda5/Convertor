@@ -1,8 +1,14 @@
 package com.convertor.convertor;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -35,6 +41,7 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -51,12 +58,20 @@ public class MainActivity extends AppCompatActivity {
     public  int mIndex, mIndex2;
     public  double mValue;
     private String theResult[] = new String[2] ;
+    private String Euro[] = new String[2] ;
+    private String Dolar[] = new String[2] ;
     private String convertFrom, convertTo;
     private List<String> array = new ArrayList<String>();
+    AlarmManager am;
+    SharedPreferences sharedPref ;
+    public static Context context;
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         mButton = (Button) findViewById(R.id.button);
         mEdit = (EditText) findViewById(R.id.edit);
@@ -65,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
         mSpinner1 = (Spinner) findViewById(R.id.spinner2);
         CurrencySymbol cs = new CurrencySymbol();
+        context = getApplicationContext();
 
         Map currencies = cs.getAvailableCurrencies();
         for (Object country : currencies.keySet()) {
@@ -130,9 +146,19 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
+      //notification
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY,8);
+        calendar.set(Calendar.MINUTE,30);
+        calendar.set(Calendar.SECOND,00);
+        Intent intent = new Intent(getApplicationContext(),NotificationActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(),100,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),AlarmManager.INTERVAL_DAY, pendingIntent);
 
     }
+
+
 
     class JsonParser extends AsyncTask<String, String, Void> {
 
@@ -148,6 +174,15 @@ public class MainActivity extends AppCompatActivity {
 
             URL url= new URL();
             String url_select = url.formatURL(convertFrom,convertTo);
+            String euro = url.formatURL("EUR","RON");
+            String dolar = url.formatURL("USD","RON");
+            setUrl(url_select,theResult);
+            setUrl(euro,Euro);
+            setUrl(dolar,Dolar);
+            return null;
+        }
+
+        public void setUrl(String url,String r[]){
 
             ArrayList<NameValuePair> param = new ArrayList<NameValuePair>();
 
@@ -157,7 +192,7 @@ public class MainActivity extends AppCompatActivity {
                 // HttpClient is more then less deprecated. Need to change to URLConnection
                 HttpClient httpClient = new DefaultHttpClient();
 
-                HttpPost httpPost = new HttpPost(url_select);
+                HttpPost httpPost = new HttpPost(url);
                 httpPost.setEntity(new UrlEncodedFormEntity(param));
                 HttpResponse httpResponse = httpClient.execute(httpPost);
                 HttpEntity httpEntity = httpResponse.getEntity();
@@ -201,20 +236,28 @@ public class MainActivity extends AppCompatActivity {
                 e1.printStackTrace();
             }
             try {
-                theResult[0] = jObj.getJSONObject("query")
+                r[0] = jObj.getJSONObject("query")
                         .getJSONObject("results").getJSONObject("rate")
                         .getString("Rate");
             } catch (JSONException e1) {
                 e1.printStackTrace();
             }
-            return null;
         }
 
         protected void onPostExecute(Void v) {
 
 
             Double d = Double.parseDouble(theResult[0]);
+            Double euro = Double.parseDouble(Euro[0]);
+            Log.e("euroo",euro+"");
+            Double dolar = Double.parseDouble(Dolar[0]);
+            Log.e("euroo",dolar+"");
             mUsd.setText(d*mValue + "");
+
+            SharedPreferences.Editor editor = getSharedPreferences("curs", MODE_PRIVATE).edit();
+            editor.putString("euro", euro+"");
+            editor.putString("dolar",""+dolar);
+            editor.apply();
 
         }
     }

@@ -5,4 +5,5 @@
         <item>INR</item>
         <item>EUR</item>
     </string-array>
+    <string name="title_activity_notification">NotificationActivity</string>
 </resources>
