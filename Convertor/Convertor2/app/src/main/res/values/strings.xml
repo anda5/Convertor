@@ -6,4 +6,8 @@
         <item>EUR</item>
     </string-array>
     <string name="title_activity_notification">NotificationActivity</string>
+    <string name="menu_settings">Settings</string>
+    <string name="ranklabel">"Ron : "</string>
+    <string name="countrylabel">"Country : "</string>
+    <string name="populationlabel">"Population : "</string>
 </resources>

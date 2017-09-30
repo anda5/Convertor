@@ -18,6 +18,7 @@ import android.support.v7.app.NotificationCompat;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -35,6 +36,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.net.InetAddress;
 import java.net.URI;
 import java.util.ArrayList;
 
@@ -49,9 +51,23 @@ public class NotificationActivity extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        new JsonParser().execute();
+        if(isInternetAvailable()) {
+            new JsonParser().execute();
+        }else {
+            Toast.makeText(context,"Please check your internet connection!",Toast.LENGTH_LONG).show();
+        }
         ctx = context;
 
+
+    }
+    public boolean isInternetAvailable() {
+        try {
+            InetAddress ipAddr = InetAddress.getByName("google.com"); //You can replace it with your name
+            return !ipAddr.equals("");
+
+        } catch (Exception e) {
+            return false;
+        }
 
     }
     class JsonParser extends AsyncTask<String, String, Void> {
