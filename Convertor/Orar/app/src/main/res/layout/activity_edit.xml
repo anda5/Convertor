@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:custom="http://schemas.android.com/tools"
+    android:background="#B388FF"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#B388FF">
+
+        <TextView
+            android:id="@+id/day"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="131dp"
+            android:layout_marginTop="42dp"
+            android:text="LUNI"
+            android:textColor="#311B92"
+            android:textSize="30dp" />
+
+        <EditText
+            android:id="@+id/materia"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/day"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:hint="Materia"
+            android:inputType="text"
+            android:textColor="#4527A0"
+            android:textSize="16dp" />
+
+        <EditText
+            android:id="@+id/numeProfesor"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/materia"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:hint="Nume profesor"
+            android:inputType="text"
+            android:textColor="#4527A0"
+            android:textSize="16dp" />
+
+        <EditText
+            android:id="@+id/sala"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/numeProfesor"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:hint="Sala"
+            android:inputType="text"
+            android:textColor="#4527A0"
+            android:textSize="16dp" />
+
+        <EditText
+            android:id="@+id/tip"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/sala"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:hint="Laborator/Seminar/Curs"
+            android:inputType="text"
+            android:textColor="#4527A0"
+            android:textSize="16dp" />
+
+        <EditText
+            android:id="@+id/oraInceput"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/tip"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:hint="Ora de inceput"
+            android:inputType="text"
+            android:textColor="#4527A0"
+            android:textSize="16dp" />
+
+        <EditText
+            android:id="@+id/oraSfarsit"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/oraInceput"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:hint="Ora sfarsit"
+            android:inputType="text"
+            android:textColor="#4527A0"
+            android:textSize="16dp" />
+
+        <CheckBox
+            android:id="@+id/saptPara"
+            android:text="Saptamana para"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_below="@id/oraSfarsit"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+
+        <CheckBox
+            android:id="@+id/saptImpara"
+            android:text="Saptamana impara"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_below="@id/saptPara"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+
+        <com.dd.processbutton.iml.ActionProcessButton
+            android:layout_marginBottom="16dp"
+            android:text="Editeaza"
+            android:textSize="18sp"
+            android:layout_below="@id/saptImpara"
+            android:id="@+id/btnWithText"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:textColor="@android:color/white"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="16dp"
+            android:layout_margin="@dimen/fab_margin"
+            custom:pb_colorComplete="@color/green_complete"
+            custom:pb_colorNormal="@color/blue_normal"
+            custom:pb_colorPressed="@color/blue_pressed"
+            custom:pb_colorProgress="@color/purple_progress"
+            custom:pb_textComplete="Success"
+            custom:pb_textProgress="Editeaza.."
+            custom:pb_textError="Error"
+            custom:pb_colorError="@color/red_error" />
+
+
+    </RelativeLayout>
+</ScrollView>

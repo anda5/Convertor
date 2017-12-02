@@ -231,8 +231,6 @@ public class MainActivity extends AppCompatActivity {
         String result = "";
 
 
-
-
         @Override
         protected Void doInBackground(String... params) {
 
@@ -240,12 +238,12 @@ public class MainActivity extends AppCompatActivity {
             String url_select = url.formatURL(convertFrom,convertTo);
             String euro = url.formatURL("EUR","RON");
             String dolar = url.formatURL("USD","RON");
-            setUrl(url_select,theResult);
+            setUrl(url_select,theResult,convertFrom,convertTo);
 
             return null;
         }
 
-        public void setUrl(String url,String r[]){
+        public void setUrl(String url,String r[],String conv1,String conv2){
 
             ArrayList<NameValuePair> param = new ArrayList<NameValuePair>();
 
@@ -300,9 +298,7 @@ public class MainActivity extends AppCompatActivity {
             }
             try {
                 if(jObj!=null){
-                r[0] = jObj.getJSONObject("query")
-                        .getJSONObject("results").getJSONObject("rate")
-                        .getString("Rate");
+                r[0] = jObj.getJSONObject("request").getString("amount");
             }else{
                 Toast.makeText(getApplicationContext(),"Please check your internet connection!",Toast.LENGTH_LONG);
             }

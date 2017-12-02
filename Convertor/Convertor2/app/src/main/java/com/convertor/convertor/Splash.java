@@ -61,7 +61,7 @@ public class Splash extends Activity {
                 public void run() {
                     try {
                         super.run();
-                        sleep(10000);  //Delay of 10 seconds
+                        sleep(30000);  //Delay of 10 seconds
                     } catch (Exception e) {
 
                     } finally {
@@ -191,6 +191,7 @@ public class Splash extends Activity {
                     r[0] = jObj.getJSONObject("query")
                             .getJSONObject("results").getJSONObject("rate")
                             .getString("Rate");
+                    Log.e("Euro",r[0]+"");
                 }else{
                     Toast.makeText(getApplicationContext(),"Please check your internet connection!",Toast.LENGTH_LONG);
                 }
@@ -200,7 +201,6 @@ public class Splash extends Activity {
         }
 
         protected void onPostExecute(Void v) {
-
 
             euro = Double.parseDouble(Euro[0]);
             dolar = Double.parseDouble(Dolar[0]);
